@@ -1,0 +1,33 @@
+{% extends 'shop/basic.html' %}
+{% block title%} My Awesome Cart Tracker {% endblock %}
+{% block body %}
+<div class="container">
+    <div class="col my-4">
+        <h2>Payment status regarding your order ID {{response.ORDERID}}</h2>
+        {% if  response.RESPCODE=='01'%}
+        ORDER SUCESS
+        {% else %}
+        ORDER FAILED
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+  // Find out the cart items from localStorage
+  if (localStorage.getItem('cart') == null) {
+      var cart = {};
+  } else {
+      cart = JSON.parse(localStorage.getItem('cart'));
+      updateCart(cart);
+  }
+function updateCart(cart) {
+  var sum = 0;
+  console.log(cart);
+  for (var item in cart) {
+      sum = sum + cart[item][0];
+  }
+  document.getElementById('cart').innerHTML = sum;
+}
+</script>
+{% endblock %}

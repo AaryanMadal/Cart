@@ -1,0 +1,26 @@
+{% extends "shop/basic.html"%}
+{% block title %}Cart{% endblock %}
+{% block body %}
+<div class="cartview">
+
+</div>
+{% endblock %}
+{% block js %}
+<script>
+  // Find out the cart items from localStorage
+  if (localStorage.getItem('cart') == null) {
+      var cart = {};
+  } else {
+      cart = JSON.parse(localStorage.getItem('cart'));
+      updateCart(cart);
+  }
+function updateCart(cart) {
+  var sum = 0;
+  console.log(cart);
+  for (var item in cart) {
+      sum = sum + cart[item][0];
+  }
+  document.getElementById('cart').innerHTML = sum;
+}
+</script>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'blog/basic.html' %}
+{% block css%}
+.image{
+  width:50%;
+}
+.line{
+}
+{% endblock %}
+{% block body %}
+  
+    <div class="container">
+      <div class="row ">
+        {% for blog in blogs%}
+        <div class="col-md-5 mx-2 line">
+          
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+              <div class="col-md-6 p-4 d-flex flex-column position-static">
+                <strong class="d-inline-block mb-2 text-primary-emphasis">{{blog.title}}</strong>
+                <h3 class="mb-0">{{blog.head0}}</h3>
+                <div class="mb-1 text-body-secondary">{{blog.pub_date}}</div>
+                <p class="card-text mb-auto">{{blog.chead0}}</p>
+                <a href="/blog/blogpost/{{blog.post_id}}" class="icon-link gap-1 icon-link-hover stretched-link">
+                  Continue reading
+                  <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+                </a>
+              </div>
+              <div class="col-auto d-none d-lg-block">
+                <img src="/media/{{blog.thumbnail}}" class="bd-placeholder-img" width="200" height="200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+              </div>
+              <!-- <div class="col-6 d-none d-lg-block">
+                <img  src="/media/{{blog.thumbnail}}" alt="..." class="img-thumbnail mt-2">
+              </div> -->
+            </div>
+
+        </div>
+        {% endfor %}
+        
+        
+      </div>
+    </div>
+
+{% endblock %}   
